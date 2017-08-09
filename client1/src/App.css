@@ -1,0 +1,32 @@
+.App {
+  text-align: left;
+  font-family: 'Archivo', sans-serif;
+}
+
+.App > h1 {
+  text-align: center;
+}
+
+.login{
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+
+.chatbox{
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 50px;
+  background-color: #777;
+  opacity: .8;
+}
+
+.chatbox > input {
+  height:50px;
+  width: 300px;
+}
+
+.messageContainer{
+  font-weight: bold;
+}
