@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
 import io from 'socket.io-client'
-const socket = io('http://localhost:8080')
 
 class Chat extends Component{
-    
     render(){
-        const messages = this.props.messages.map(el=>{
+        const messages = this.props.messages.map((el,i)=>{
                 return(
-                    <div>
-                        <span>{el.author} : {el.message}</span>
+                    <div key={i}>
+                        <span> {String.fromCodePoint(128293)} {el.author} : {el.message}</span>
                     </div>
                 )
             })

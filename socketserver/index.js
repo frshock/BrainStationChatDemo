@@ -5,6 +5,7 @@ const express = require('express'),
        server = require('http').createServer(app),
            io = require('socket.io')(server),
          PORT = process.env.PORT || 8080
+    //  stripper = new RegExp(/[$&+,:;=?@#|/'<>.^*()%!]/, 'gi')
 
 // Add headers && CORS
 app.use((req, res, next)=>{
@@ -19,16 +20,16 @@ app.use((req, res, next)=>{
 io.on('connection', socket=>{ 
     io.emit('message', {connection: 'LOUD AND CLEAR.'})
     socket.on('client:message', data=> {
-        if(data.author.search(/wil/gi) > -1){
-            io.emit('server:message', {author: 'Fail Troll', message: data.message, error: true})
-        }
-        else io.emit('server:message', data)
+        // if((data.author.search(/wil/gi) > -1 || stripper.test(data.author)) || data.message.indexOf('Will')>-1 ){
+        //     io.emit('server:message', {author: 'Fail Troll', message: data.message.replace('Will','Ian').replace('will',`${String.fromCodePoint(128293)}I'm a really bad troll${String.fromCodePoint(128293)}`), error: true})
+        // }
+        io.emit('server:message', data)
     })
     socket.on('client:newuser', data=>{
-        if(data.author.search(/wil/gi) > -1){
-            io.emit('server:userjoin', {author: 'Fail Troll', message: data.message, error: true})
-        }
-        else io.emit('server:userjoin', data)
+        // if(data.author.search(/wil/gi) > -1 || stripper.test(data.author)){
+        //     io.emit('server:userjoin', {author: 'Fail Troll', message: data.message, error: true})
+        // }
+        io.emit('server:userjoin', data)
     })
 });
 
